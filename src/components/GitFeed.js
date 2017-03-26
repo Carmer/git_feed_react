@@ -15,7 +15,7 @@ class GitFeed extends Component {
   }
 
   getEvents(){
-    axios.get("http://api.github.com/users/Carmer/events?page=1&per_page=100&access_token=7a50148f1cdd5f6e3f990096de1fd0431f18370b")
+    axios.get("http://api.github.com/users/Carmer/received_events?page=1&per_page=100&access_token=7a50148f1cdd5f6e3f990096de1fd0431f18370b")
                      .then( response => {
                              this.setState({events: response.data});
                            })
