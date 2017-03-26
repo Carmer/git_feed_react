@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import '../stylesheets/Card.css'
-import javascript_time_ago from 'javascript-time-ago'
+import '../stylesheets/Card.css';
+import javascript_time_ago from 'javascript-time-ago';
+import ActiveEventFactory from './ActiveEventFactory';
 
 // Load locale specific relative date/time messages
 //
-javascript_time_ago.locale(require('javascript-time-ago/locales/en'))
-javascript_time_ago.locale(require('javascript-time-ago/locales/ru'))
+javascript_time_ago.locale(require('javascript-time-ago/locales/en'));
+javascript_time_ago.locale(require('javascript-time-ago/locales/ru'));
 
 // Load number pluralization functions for the locales.
 // (the ones that decide if a number is gonna be
@@ -14,9 +15,9 @@ javascript_time_ago.locale(require('javascript-time-ago/locales/ru'))
 // https://github.com/eemeli/make-plural.js
 // http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html
 //
-require('javascript-time-ago/intl-messageformat-global')
-require('intl-messageformat/dist/locale-data/en')
-require('intl-messageformat/dist/locale-data/ru')
+require('javascript-time-ago/intl-messageformat-global');
+require('intl-messageformat/dist/locale-data/en');
+require('intl-messageformat/dist/locale-data/ru');
 
 // Initialization complete.
 // Ready to format relative dates and times.
@@ -36,7 +37,7 @@ const EventCard = ({actor, created_at, id, org, payload, repo, type, active, sel
       <div className="card-content">
         <div>
           <a href={"http://github.com/" + actor.login }>
-            <h5>{actor.login}</h5>
+            <p>{actor.login}</p>
             <img className="circle img-avatar" src={actor.avatar_url} />
           </a>
         </div>
@@ -45,6 +46,8 @@ const EventCard = ({actor, created_at, id, org, payload, repo, type, active, sel
           <h4 className="time">{ time_ago_english.format(new Date(created_at)) }</h4>
             Repository: <a className="repo-link" href={repo.url}>{repo.name}</a>
         </div>
+        {/* render eventType specific card when active */}
+        { active ? ActiveEventFactory[type](payload, repo) : undefined }
       </div>
     </div>
   )
