@@ -3,7 +3,7 @@ import React from 'react';
 import logo from '../images/github.png';
 import tempAvatar from '../images/tempAvatar.jpeg';
 
-let Header = function() {
+const Header = () => {
   return (
     <nav>
       <div className="GitFeed-header">

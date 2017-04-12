@@ -9,10 +9,13 @@ class EventList extends Component {
   render(){
     return (
       <div className="EventList container" >
-        {this.props.events.map(event =>
-          <EventCard {...event} key={event.id}
-                      selectActive={this.props.selectActive}/>
-        )}
+        { this.props.events.map(event =>
+
+          <EventCard {...event}
+                      key={event.id}
+                      selectActive={this.props.selectActive} />
+          )
+        }
       </div>
     )
   }
